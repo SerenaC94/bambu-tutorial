@@ -1,4 +1,6 @@
 #include "module_lib.h"
+extern void __builtin_bambu_time_start();
+extern void __builtin_bambu_time_stop();
 
 int main()
 {

@@ -3,6 +3,8 @@
 #include<assert.h>
 
 #define MAX_NUMBER_OF_NODES 255
+extern void __builtin_bambu_time_start();
+extern void __builtin_bambu_time_stop();
 
 /* stack data structure */
 struct stack
