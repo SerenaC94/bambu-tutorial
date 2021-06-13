@@ -1,10 +1,11 @@
 #!/bin/bash
 abs_script=$(readlink -e $0)
 dir_script=$(dirname $abs_script)
-rm -rf output
-$dir_script/test_panda.py --tool=bambu --bambu=bambu --spider=spider \
-   --args="--configuration-name=pow --top-fname=formula_pow" \
-   --args="--configuration-name=mult --top-fname=formula_mult " \
-   --args="--configuration-name=double_pow --top-fname=double_formula_pow" \
-   --args="--configuration-name=double_mult --top-fname=double_formula_mult " \
-   -c=--simulate -c=-lm -c=--generate-tb=$dir_script/testbench.xml -c=--speculative-sdc-scheduling -b$dir_script -l$dir_script/list $@
+$dir_script/../../test_panda.py --tool=bambu --bambu=bambu --spider=spider \
+   --args="--configuration-name=pow_square " \
+   --args="--configuration-name=mult_square -DMULT_SQUARE" \
+   --args="--configuration-name=single_pow_square -DFP_SINGLE" \
+   --args="--configuration-name=single_mult_square -DFP_SINGLE -DMULT_SQUARE" \
+   -c=--simulate -c=-lm -c=--generate-tb=$dir_script/testbench.xml -c=--speculative-sdc-scheduling \
+   -c=--top-fname=awesome_math \
+   -b$dir_script -l$dir_script/list $@

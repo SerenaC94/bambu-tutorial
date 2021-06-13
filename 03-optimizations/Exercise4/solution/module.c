@@ -1,20 +1,24 @@
 #include <math.h>
-float formula_pow(float a, float b, float c)
-{
-   return acosf((powf(a,2) + powf(b,2) - powf(c,2))/(2*a*b));
-}
 
-float formula_mult(float a, float b, float c)
-{
-   return acosf((a*a + b*b - c*c)/(2*a*b));
-}
+#ifdef FP_SINGLE
+#define FP_TYPE float
+#define ACOS(a) acosf(a)
+#else
+#define FP_TYPE double
+#define ACOS(a) acos(a)
+#endif
 
-double double_formula_pow(double a, double b, double c)
-{
-   return acos((pow(a,2) + pow(b,2) - pow(c,2))/(2*a*b));
-}
+#ifdef MULT_SQUARE
+#define SQUARE(a) (a*a)
+#else
+#ifdef FP_SINGLE
+#define SQUARE(a) powf(a,2)
+#else
+#define SQUARE(a) pow(a,2)
+#endif
+#endif
 
-double double_formula_mult(double a, double b, double c)
+FP_TYPE awesome_math(FP_TYPE a, FP_TYPE b, FP_TYPE c)
 {
-   return acos((a*a + b*b - c*c)/(2*a*b));
+   return ACOS((SQUARE(a) + SQUARE(b) - SQUARE(c))/(2*a*b));
 }
