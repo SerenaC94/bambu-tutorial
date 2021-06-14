@@ -6,7 +6,7 @@ rm -rf keccak_V7
 mkdir keccak_V7
 cd keccak_V7
 clang-6.0  -O3 -fno-slp-vectorize -fno-vectorize $root_dir/Keccak.c -emit-llvm -S -o test.ll
-timeout 2h bambu --top-fname=kekka_coproc -v4 --clock-period=2.5 --device-name=xc7vx690t-3ffg1930-VVD test.ll --generate-tb=$root_dir/testP0.xml --simulate --compiler=I386_CLANG6 --no-iob --print-dot "$@"
+timeout 2h bambu --top-fname=kekka_coproc -v4 --clock-period=2.5 --device-name=xc7vx690t-3ffg1930-VVD test.ll --generate-tb=$root_dir/testP0.xml --simulate --compiler=I386_CLANG6 --no-iob --print-dot --pretty-print=a.c "$@"
 return_value=$?
 if test $return_value != 0; then
    exit $return_value
