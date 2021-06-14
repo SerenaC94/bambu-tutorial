@@ -300,6 +300,23 @@ int main()
         printf("Data Not found in tree.\n");
     }
 
+    /* Search node into tree */
+#ifdef BAMBU_PROFILING
+  __builtin_bambu_time_start();
+#endif
+    tmp = search(root, 6);
+#ifdef BAMBU_PROFILING
+  __builtin_bambu_time_stop();
+#endif
+    if (tmp)
+    {
+        printf("Second searched node=%d\n", tmp->data);
+    }
+    else
+    {
+        printf("Data Not found in tree.\n");
+    }
+
     /* Deleting all nodes of tree */
     deltree(root);
     return 0;
